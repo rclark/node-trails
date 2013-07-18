@@ -8,12 +8,14 @@
         "underscore": "1.5.x"
     },
     "devDependencies": {
-        "vows": "0.7.x"
+        "vows": "0.7.x",
+        "docco": "0.6.x"
     },
     "engine": "node >= 0.8.20",
     "scripts": {
         "test": "vows test/* --spec",
-        "prepublish": "node setup.js"
+        "prepublish": "node setup.js",
+        "code-docs": "docco -o docs/db db/*.js; docco ./*.js"
     }
 }
         
