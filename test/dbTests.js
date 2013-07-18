@@ -24,7 +24,14 @@ vows.describe("Database Manipulation").addBatch({
         "can be called twice": function (err, dbs) {
             db.setup(dbsAlright);
         }
-    }/*,
+    },
+    "Just something stupid": {
+        topic: function () { return true; },
+        "works": function(result) {
+            assert.isTrue(result);
+        }
+    }
+    /*,
     "The database purge function": {
         topic: function () {
             db.purge(this.callback);
