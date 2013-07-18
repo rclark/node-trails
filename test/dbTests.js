@@ -20,15 +20,18 @@ vows.describe("Database Manipulation").addBatch({
             assert.isNull(err);
             assert.isObject(dbs);
         },
-        "returns all three database connections": dbsAlright
-    },
+        "returns all three database connections": dbsAlright,
+        "can be called twice": function (err, dbs) {
+            db.setup(dbsAlright);
+        }
+    }/*,
     "The database purge function": {
         topic: function () {
             db.purge(this.callback);
         },
         "does not return an error": function (err) {
             assert.isTrue(!err);
-        }/*,
+        },
         "leaves the databases empty": function (err) {
             assert.isTrue(!err);
             db.setup(function (err, dbs) {
@@ -40,6 +43,6 @@ vows.describe("Database Manipulation").addBatch({
                     });
                 });
             });
-        }*/
-    }
+        }
+    }*/
 }).export(module);
