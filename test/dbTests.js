@@ -25,13 +25,6 @@ vows.describe("Database Manipulation").addBatch({
             db.setup(dbsAlright);
         }
     },
-    "Just something stupid": {
-        topic: function () { return true; },
-        "works": function(result) {
-            assert.isTrue(result);
-        }
-    }
-    /*,
     "The database purge function": {
         topic: function () {
             db.purge(this.callback);
@@ -51,5 +44,5 @@ vows.describe("Database Manipulation").addBatch({
                 });
             });
         }
-    }*/
+    }
 }).export(module);

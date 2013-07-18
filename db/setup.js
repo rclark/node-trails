@@ -30,10 +30,10 @@ module.exports = function setupDbs(callback) {
     callback = callback || function () {};
     
     fs.readFile(configPath, function (err, data) {
-        if (err) { callback(err); }
+        if (err) { callback(err); return;  }
         var config = JSON.parse(data);
         try { var couch = nano(config.couchUrl); }
-        catch(err) { callback(err); }
+        catch(err) { callback(err); return;  }
         
         couch.db.list(function (err, dbs) {
             var required = ["osmcache", "routes", "segments"];
@@ -41,7 +41,7 @@ module.exports = function setupDbs(callback) {
                 if (i < required.length) {
                     if (!_.contains(dbs, required[i])) {
                         couch.db.create(required[i], function (err, body) {
-                            if (err) { callback(err); }
+                            if (err) { callback(err); return;  }
                             dbCheck(i + 1);
                         });
                     } else {
