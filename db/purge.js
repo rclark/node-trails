@@ -28,7 +28,7 @@ module.exports = function purgeDbs(callback) {
                     docs = _.map(body.rows, function (doc) {
                         return { _id: doc._id, _rev: doc._rev, _deleted: true };
                     });
-                    console.log(docs);
+                    
                     thisDb.bulk(docs, function (err, response) {
                         if (err) { callback(err); return;  }
                         purgeDb(i + 1);

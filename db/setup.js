@@ -37,20 +37,18 @@ module.exports = function setupDbs(callback) {
         
         couch.db.list(function (err, dbs) {
             var required = ["osmcache", "routes", "segments"];
+            
             function dbCheck(i) {
                 if (i < required.length) {
-                    if (!_.contains(dbs, required[i])) {
-                        couch.db.create(required[i], function (err, body) {
-                            if (err) { callback(err); return;  }
-                            dbCheck(i + 1);
-                        });
-                    } else {
+                    couch.db.create(required[i], function (err, body) {
+                        if (err && err.error != "file_exists") { callback(err); return;  }
                         dbCheck(i + 1);
-                    }
+                    });
                 } else {
                     getDbs(couch, callback);
                 }
             }
+            
             dbCheck(0);
         });
     });
