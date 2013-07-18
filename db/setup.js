@@ -32,25 +32,25 @@ module.exports = function setupDbs(callback) {
     fs.readFile(configPath, function (err, data) {
         if (err) { callback(err); return;  }
         var config = JSON.parse(data);
+        
         try { var couch = nano(config.couchUrl); }
         catch(err) { callback(err); return;  }
         
-        couch.db.list(function (err, dbs) {
-            var required = ["osmcache", "routes", "segments"];
-            
-            function dbCheck(i) {
-                if (i < required.length) {
-                    couch.db.create(required[i], function (err, body) {
-                        if (err && err.error != "file_exists") { callback(err); return;  }
-                        dbCheck(i + 1);
-                    });
-                } else {
-                    getDbs(couch, callback);
-                }
+        var required = ["osmcache", "routes", "segments"];
+        
+        function dbCheck(i) {
+            if (i < required.length) {
+                couch.db.create(required[i], function (err, body) {
+                    if (err && err.error != "file_exists") { callback(err); return;  }
+                    dbCheck(i + 1);
+                });
+            } else {
+                getDbs(couch, callback);
             }
-            
-            dbCheck(0);
-        });
+        }
+        
+        dbCheck(0);
+        
     });
 };
 
