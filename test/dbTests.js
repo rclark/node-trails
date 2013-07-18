@@ -21,7 +21,7 @@ vows.describe("Database Manipulation").addBatch({
             assert.isObject(dbs);
         },
         "returns all three database connections": dbsAlright
-    },
+    }/*,
     "The database purge function": {
         topic: function () {
             db.purge(this.callback);
@@ -41,5 +41,5 @@ vows.describe("Database Manipulation").addBatch({
                 });
             });
         }
-    }
+    }*/
 }).export(module);
