@@ -1,0 +1,18 @@
+{
+    "name": "node-trails",
+    "description": "Keeping track of trails with Node.js and CouchDB",
+    "author": "Ryan Clark",
+    "version": "0.0.1",
+    "dependencies": {
+        "nano": "4.0.x",
+        "underscore": "1.5.x"
+    },
+    "devDependencies": {
+        "vows": "0.7.x"
+    },
+    "engine": "node >= 0.8.20",
+    "scripts": {
+        "test": "vows test/* --spec"
+    }
+}
+        
