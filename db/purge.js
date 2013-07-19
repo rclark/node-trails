@@ -34,14 +34,14 @@ module.exports = function purgeDbs(callback) {
                     
                     // If there are no records, then there's nothing to do
                     if (body.rows.length === 0) { callback(); return;  }
-                    
+
                     // Otherwise generate an array to submit to Couch to delete records
-                    docs = _.map(body.rows, function (doc) {
-                        return { _id: doc._id, _rev: doc._rev, _deleted: true };
+                    var docs = _.map(body.rows, function (doc) {
+                        return { _id: doc.id, _rev: doc.value.rev, _deleted: true };
                     });
                     
                     // Perform a bulk update
-                    thisDb.bulk(docs, function (err, response) {
+                    thisDb.bulk({ docs: docs }, function (err, response) {
                         if (err) { callback(err); return;  }
                         
                         // Iterate to the next database

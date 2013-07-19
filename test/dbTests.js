@@ -27,7 +27,14 @@ vows.describe("Database Manipulation").addBatch({
     },
     "The database purge function": {
         topic: function () {
-            db.purge(this.callback);
+            var callback = this.callback;
+            db.setup(function (err, dbs) {
+                if (err) { return err; }
+                dbs.osmcache.insert({a: "test"}, function (err, body) {
+                    if (err) { return err; }
+                    db.purge(callback);
+                });
+            });
         },
         "does not return an error": function (err) {
             assert.isTrue(!err);

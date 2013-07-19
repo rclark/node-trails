@@ -64,5 +64,3 @@ module.exports = function setupDbs(callback) {
         dbCheck(0); 
     });
 };
-
-
