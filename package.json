@@ -5,7 +5,9 @@
     "version": "0.0.1",
     "dependencies": {
         "nano": "4.0.x",
-        "underscore": "1.5.x"
+        "underscore": "1.5.x",
+        "node-expat": "2.0.x",
+        "request": "2.22.x"
     },
     "devDependencies": {
         "vows": "0.7.x",
