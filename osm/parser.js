@@ -23,7 +23,7 @@ function Parser() {
                 type: "Feature",
                 id: attrs.id, 
                 properties: {uid: attrs.uid},
-                geometry: {type: "Point", coordinates: [attrs.lon, attrs.lat]}
+                geometry: {type: "Point", coordinates: [Number(attrs.lon), Number(attrs.lat)]}
             };
             
             self.nodes[attrs.id] = nodeInfo;
